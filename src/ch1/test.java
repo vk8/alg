@@ -2,16 +2,12 @@ package ch1;
 
 public class test {
     public static void main(String[] args) {
-        //Integer.toBinaryString(N)
-//        int N = 7; // 5=101 6=110 7=111 8=1000
-//        String s = "";
-//        for (int n = N; n > 0; n /= 2)
-//            s = (n % 2) + s;
-//        System.out.println(f(N,""));
-        System.out.println(1 % 2);
-        System.out.println(1 % 3);
-        System.out.println(3 % 4);
-        System.out.println(11 % 14);
+//        Integer.toBinaryString(N)
+        int N = 7; // 5=101 6=110 7=111 8=1000
+        String s = "";
+        for (int n = N; n > 0; n /= 2)
+            s = (n % 2) + s;
+        System.out.println(f(N,""));
     }
 
     static String f(int a, String result) {
