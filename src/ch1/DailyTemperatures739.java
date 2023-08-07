@@ -1,6 +1,7 @@
 package ch1;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Stack;
 
 public class DailyTemperatures739 {
     public static void main(String[] args) {
@@ -10,44 +11,18 @@ public class DailyTemperatures739 {
         System.out.println(Arrays.toString(dailyTemperatures(new int[]{30, 60, 90})));
     }
 
-    static final int MAX_TEMPERATURE = 100;
-
     static int[] dailyTemperatures(int[] temperatures) {
         int[] answer = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = temperatures.length - 1; i >= 0; i--) {
+            while (!stack.empty() && temperatures[i] >= temperatures[stack.peek()])
+                stack.pop();
 
-        ArrayList<LinkedList<Integer>> listOfTemperaturesIndexes =
-                new ArrayList<>(Collections.nCopies(MAX_TEMPERATURE + 1, null));
+            if (!stack.empty())
+                answer[i] = stack.peek() - i;
 
-        for (int i = 0; i < temperatures.length; i++) {
-            int currentTemperature = temperatures[i];
-            if (listOfTemperaturesIndexes.get(currentTemperature) == null)
-                listOfTemperaturesIndexes.set(currentTemperature, new LinkedList<>(List.of(i)));
-            else
-                listOfTemperaturesIndexes.get(currentTemperature).add(i);
+            stack.push(i);
         }
-
-        for (int i = 0; i < temperatures.length; i++) {
-            int currentTemperature = temperatures[i];
-            int nextTemperature = MAX_TEMPERATURE + 1;
-            int minIndexNextTemperature = temperatures.length;
-            for (int j = currentTemperature + 1; j < listOfTemperaturesIndexes.size(); j++) {
-                LinkedList<Integer> item = listOfTemperaturesIndexes.get(j);
-                if (item != null && item.size() > 0)
-                    if (item.getFirst() < minIndexNextTemperature) {
-                        nextTemperature = j;
-                        minIndexNextTemperature = item.getFirst();
-                    }
-            }
-
-            if (minIndexNextTemperature < temperatures.length)
-                answer[i] = minIndexNextTemperature - i;
-
-            if (nextTemperature <= MAX_TEMPERATURE && i > minIndexNextTemperature)
-                listOfTemperaturesIndexes.get(nextTemperature).remove();
-
-            listOfTemperaturesIndexes.get(currentTemperature).remove();
-        }
-
         return answer;
     }
 
