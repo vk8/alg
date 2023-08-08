@@ -30,7 +30,7 @@ public class KthLargestElement215 {
                 tempArray[i]--;
                 k--;
             }
-        return i - 1 - MAX_VALUE;
+        return i + 1 - MAX_VALUE;
     }
 }
 
