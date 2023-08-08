@@ -20,16 +20,17 @@ public class KthLargestElement215 {
     }
 
     public int findKthLargest(int[] nums, int k) {
-        int[] tempArray = new int[20001];
-        for (int num : nums) tempArray[10000 + num]++;
+        final int MAX_VALUE = 10000;
+        final int MIN_VALUE = -10000;
+        int[] tempArray = new int[MAX_VALUE - MIN_VALUE + 1];
+        for (int num : nums) tempArray[MAX_VALUE + num]++;
         int i;
         for (i = tempArray.length - 1; i >= 0 && k > 0; i--)
             while (tempArray[i] > 0 && k > 0) {
                 tempArray[i]--;
                 k--;
             }
-
-        return i - 9999;
+        return i - 1 - MAX_VALUE;
     }
 }
 
