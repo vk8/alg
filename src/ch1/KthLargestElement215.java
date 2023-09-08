@@ -25,11 +25,7 @@ public class KthLargestElement215 {
         int[] tempArray = new int[MAX_VALUE - MIN_VALUE + 1];
         for (int num : nums) tempArray[MAX_VALUE + num]++;
         int i;
-        for (i = tempArray.length - 1; i >= 0 && k > 0; i--)
-            while (tempArray[i] > 0 && k > 0) {
-                tempArray[i]--;
-                k--;
-            }
+        for (i = tempArray.length - 1; i >= 0 && k > 0; i--) k -= tempArray[i];
         return i + 1 - MAX_VALUE;
     }
 }
