@@ -1,21 +1,38 @@
 package ch1;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class WiggleSortII324 {
 
     public static void main(String[] args) {
-        int[] arr = new int[]{12, 5, 16, 1, 7, 55, 27};
-        new WiggleSortII324().wiggleSort(arr);
+//        int[] arr = new int[]{12, 5, 16, 1, 7, 55, 27};
+//        new WiggleSortII324().wiggleSort(arr);
+//        System.out.println(Arrays.toString(arr));
+//        arr = new int[]{1, 3, 2, 2, 3, 1};
+//        new WiggleSortII324().wiggleSort(arr);
+//        System.out.println(Arrays.toString(arr));
+//        arr = new int[]{4, 5, 5, 6};
+//        new WiggleSortII324().wiggleSort(arr);
+//        System.out.println(Arrays.toString(arr));
+//        arr = new int[]{1, 4, 3, 4, 1, 2, 1, 3, 1, 3, 2, 3, 3};
+//        new WiggleSortII324().wiggleSort(arr);
+//        System.out.println(Arrays.toString(arr));
+        int[] arr = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 11};
+        new WiggleSortII324().insertionSort(arr);
+        System.out.println(Arrays.toString(arr));
+
+        arr = new int[]{12, 5, 16, 1, 7, 55, 27};
+        new WiggleSortII324().insertionSort(arr);
         System.out.println(Arrays.toString(arr));
         arr = new int[]{1, 3, 2, 2, 3, 1};
-        new WiggleSortII324().wiggleSort(arr);
+        new WiggleSortII324().insertionSort(arr);
         System.out.println(Arrays.toString(arr));
         arr = new int[]{4, 5, 5, 6};
-        new WiggleSortII324().wiggleSort(arr);
+        new WiggleSortII324().insertionSort(arr);
         System.out.println(Arrays.toString(arr));
         arr = new int[]{1, 4, 3, 4, 1, 2, 1, 3, 1, 3, 2, 3, 3};
-        new WiggleSortII324().wiggleSort(arr);
+        new WiggleSortII324().insertionSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -61,4 +78,11 @@ public class WiggleSortII324 {
         a[i] = a[j];
         a[j] = t;
     }
+
+    void insertionSort(int[] a) {
+        for (int i = 1; i < a.length; i++)
+            for (int j = i; j > 0 && a[j] < a[j - 1]; j--)
+                swap(a, j, j - 1);
+    }
+
 }
